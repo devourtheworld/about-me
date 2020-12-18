@@ -1,12 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import { Component } from 'react';
+// import Plates from './components/plates.js';
+import Me from './components/aboutMe.js';
 
-function App() {
-  return (
-    <div className="App">
+
+export default class App extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showComponent: false,
+    };
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    this.setState({
+      showComponent: true,
+    });
+  }
+
+  // test = () => {
+  //   return(<Me/>);
+  // }
+
+  render(){
+    return(
+    <div className="Plates">
       <header className="header-1">Who am I?</header>
       <div className="story">
-        <p>my story</p>
+        <p onMouseOver={this.onButtonClick} >my story</p>
+        {this.state.showComponent ? <Me/> : null}
       </div>
       <div className="city">
         <p>my city</p>
@@ -24,7 +48,6 @@ function App() {
         <p>my email</p>
       </div>
     </div>
-  );
+    )
+  }
 }
-
-export default App;
